@@ -1,5 +1,45 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "devops-sorted"
 version = "0.1.0"
-description = "Offline AI-powered DevOps assistant"
+description = "Offline AI-powered DevOps assistant for the terminal."
+readme = "README.md"
 requires-python = ">=3.10"
+license = { text = "MIT" }
+
+authors = [
+    { name = "Suhaib Sareer" }
+]
+
+keywords = [
+    "devops",
+    "ai",
+    "ollama",
+    "rag",
+    "terminal",
+    "cli",
+    "offline"
+]
+
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+dependencies = [
+    "typer>=0.16.0",
+    "rich>=14.0.0",
+]
+
+[project.scripts]
+devops-devops_sorted = "devops_sorted.cli:app"
+ds = "devops_sorted.cli:app"
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
