@@ -1,4 +1,7 @@
-from .version import __version__
-from .core.console import console
-__all__ = ["__version__", "console"]
+from .core import console, logger
+
+__version__ = "0.1.0"
+console=console.console
+logger=logger.logger
+__all__ = ["__version__", "console", "logger"]
 
