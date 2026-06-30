@@ -1,0 +1,5 @@
+[project]
+name = "devops-sorted"
+version = "0.1.0"
+description = "Offline AI-powered DevOps assistant"
+requires-python = ">=3.10"
