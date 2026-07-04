@@ -1,4 +1,5 @@
 from typing import Iterator
+from devops_sorted.schemas.chat import ChatRequest, ChatResponse
 
 import ollama
 
@@ -34,35 +35,32 @@ class OllamaClient(BaseLLMClient):
             logger.error("Unable to list models: %s", e)
             return []
 
-    def chat(self, prompt: str, model: str) -> str:
+    def chat(self, request: ChatRequest) -> ChatResponse:
         response = self._client.chat(
-            model=model,
+            model=request.model,
             messages=[
                 {
                     "role": "user",
-                    "content": prompt,
+                    "content": request.prompt
                 }
             ],
         )
-
-        return response["message"]["content"]
-
-    def stream_chat(
-        self,
-        prompt: str,
-        model: str,
-    ) -> Iterator[str]:
+        return ChatResponse(
+            content=response.message.content
+        )
+    def stream_chat(self, request: ChatRequest,) -> Iterator[str]:
 
         stream = self._client.chat(
-            model=model,
+            model=request.model,
             messages=[
                 {
                     "role": "user",
-                    "content": prompt,
+                    "content": request.prompt,
                 }
             ],
             stream=True,
         )
 
         for chunk in stream:
-            yield chunk["message"]["content"]
+            yield chunk.message.content
+    

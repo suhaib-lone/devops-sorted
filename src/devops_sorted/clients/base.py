@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from devops_sorted.schemas.chat import ChatRequest, ChatResponse
 from typing import Iterator
 
 
@@ -16,11 +17,11 @@ class BaseLLMClient(ABC):
         raise NotImplementedError
 
     @abstractmethod
-    def chat(self, prompt: str, model: str) -> str:
+    def chat(self, request: ChatRequest) -> ChatResponse:
         """Return a complete response."""
         raise NotImplementedError
 
     @abstractmethod
-    def stream_chat(self, prompt: str, model: str) -> Iterator[str]:
+    def stream_chat(self, request: ChatRequest) -> Iterator[str]:
         """Yield response tokens."""
         raise NotImplementedError
