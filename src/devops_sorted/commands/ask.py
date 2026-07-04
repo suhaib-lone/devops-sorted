@@ -1,6 +1,15 @@
-import typer
-from devops_sorted import console, logger
+from rich.markdown import Markdown
 
-def ask(question: str):
-    logger.info(f"Processing question")
-    console.print(f"[magenta]Received question: {question}[/magenta]")
+from devops_sorted.clients.ollama import OllamaClient
+from devops_sorted.core.console import console
+from devops_sorted.services.ask_service import AskService
+
+
+def ask(question: str) -> None:
+    """Ask a DevOps-related question."""
+
+    client = OllamaClient()
+    service = AskService(client)
+    response = service.ask_question(question)
+
+    console.print(Markdown(response))

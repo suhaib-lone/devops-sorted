@@ -33,6 +33,7 @@ classifiers = [
 dependencies = [
     "typer>=0.16.0",
     "rich>=14.0.0",
+    "ollama>=0.5.0",
 ]
 
 [project.scripts]
