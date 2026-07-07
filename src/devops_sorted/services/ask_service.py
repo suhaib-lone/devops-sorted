@@ -15,7 +15,7 @@ class AskService:
 
         request = ChatRequest(
             prompt=question,
-            model=settings.model,
+            model=settings.model.name,
         )
 
         response = self.client.stream_chat(request)

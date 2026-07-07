@@ -12,3 +12,4 @@ def ask(question: str) -> None:
     response = service.ask_question(question)
     for chunk in response:
         console.print(chunk, end="")
+

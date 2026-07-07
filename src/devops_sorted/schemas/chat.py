@@ -11,5 +11,5 @@ class ChatRequest:
 @dataclass
 class ChatResponse:
     content: str
-    model: str = settings.model
+    model: str = settings.model.name
     elapsed: Optional[float] = None
